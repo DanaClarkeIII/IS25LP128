@@ -83,7 +83,6 @@ uint8_t IS25LP128::readByte(uint32_t addr) {
   uint8_t data = SPI.transfer(0);
   digitalWrite(csPin, HIGH);
   checkError();
-  writeDisable();
   return data;
 }
 
