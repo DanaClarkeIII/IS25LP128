@@ -26,14 +26,12 @@ void IS25LP128::writeEnable() {
   digitalWrite(csPin, LOW);
   SPI.transfer(WRITE_ENABLE);
   digitalWrite(csPin, HIGH);
-  checkError();
 }
 
 void IS25LP128::writeDisable() {
   digitalWrite(csPin, LOW);
   SPI.transfer(WRITE_DISABLE);
   digitalWrite(csPin, HIGH);
-  checkError();
 }
 
 uint8_t IS25LP128::readStatusRegister() {
@@ -68,6 +66,7 @@ void IS25LP128::writeByte(uint32_t addr, uint8_t data) {
     }
     uint8_t readBack = readByte(addr);
     if (readBack == data) {
+      writeDisable();
       return; // If the data matches, the operation was successful
     }
   }
@@ -84,6 +83,7 @@ uint8_t IS25LP128::readByte(uint32_t addr) {
   uint8_t data = SPI.transfer(0);
   digitalWrite(csPin, HIGH);
   checkError();
+  writeDisable();
   return data;
 }
 
@@ -97,6 +97,7 @@ void IS25LP128::eraseSector(uint32_t addr) {
   digitalWrite(csPin, HIGH);
   waitUntilNotBusy();
   checkError();
+  writeDisable();
 }
 
 void IS25LP128::eraseBlock32K(uint32_t addr) {
@@ -109,6 +110,7 @@ void IS25LP128::eraseBlock32K(uint32_t addr) {
   digitalWrite(csPin, HIGH);
   waitUntilNotBusy();
   checkError();
+  writeDisable();
 }
 
 void IS25LP128::eraseBlock64K(uint32_t addr) {
@@ -121,6 +123,7 @@ void IS25LP128::eraseBlock64K(uint32_t addr) {
   digitalWrite(csPin, HIGH);
   waitUntilNotBusy();
   checkError();
+  writeDisable();
 }
 
 void IS25LP128::eraseChip() {
@@ -130,6 +133,7 @@ void IS25LP128::eraseChip() {
   digitalWrite(csPin, HIGH);
   waitUntilNotBusy();
   checkError();
+  writeDisable();
 }
 
 uint8_t IS25LP128::readDeviceID() {
