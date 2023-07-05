@@ -67,6 +67,3 @@ While this library provides a comprehensive set of functions for basic operation
 
 ## Future Considerations
 Future versions of this library could include support for more advanced features of the IS25LP128 flash module. They could also include more robust error handling and possibly a higher-level interface for easier use. In addition, future versions of the library could include functions for reading and writing larger amounts of data, such as entire pages or blocks. This would improve the efficiency of the library for applications that need to transfer large amounts of data.
-
-## Conclusion
-This library provides a basic interface for communicating with the IS25LP128 flash module over SPI. It includes functions for initializing the module, entering and exiting QPI mode, reading and writing data, erasing sectors and blocks, and reading the device ID. It also includes sophisticated error handling and data verification. However, it is a basic version and may need to be extended for more advanced use cases.
